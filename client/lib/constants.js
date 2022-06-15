@@ -1,4 +1,4 @@
-import abi from "./Transactions.json";
+import abi from "../../smart_contract/artifacts/contracts/Transactions.sol/Transactions.json";
 
-export const contractAddress = "0xBbfA8f54252610530E0ea8a3ed58204F00AA622F";
+export const contractAddress = "0x27e08a9F7eDE0683dA7Bd7965084ba26e41Acc49";
 export const contractABI = abi.abi;

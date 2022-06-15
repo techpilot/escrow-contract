@@ -4,18 +4,24 @@ pragma solidity ^0.8.0;
 // import "hardhat/console.sol";
 
 contract Transactions {
-    address agent;
+    uint256 private constant _NOT_ENTERED = 1;
+    uint256 private constant _ENTERED = 2;
+
+    uint256 private _status;
 
     mapping(address => uint256) public deposits;
     mapping(address => uint256) public wid;
 
-    modifier onlyAgent() {
-        require(msg.sender == agent);
+    modifier nonReentrant() {
+        require(_status != _ENTERED, "ReentrancyGuard: reentrant call");
+        _status = _ENTERED;
         _;
+
+        _status = _NOT_ENTERED;
     }
 
     constructor() {
-        agent = msg.sender;
+        _status = _NOT_ENTERED;
     }
 
     // deposit funds into the escrow account
@@ -32,9 +38,12 @@ contract Transactions {
     }
 
     // withdraws the funds into the payee address
-    function withdraw(address payee, address owner) public {
+    function withdraw(address payee, address owner) public nonReentrant {
         uint256 payment = deposits[payee];
         uint256 ownerPayment = wid[owner];
+
+        require(payment > 0);
+        require(ownerPayment > 0);
 
         deposits[payee] = 0;
         payable(payee).transfer(payment);

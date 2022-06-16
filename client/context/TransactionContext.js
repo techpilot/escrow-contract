@@ -3,6 +3,7 @@ import { ethers } from "ethers";
 import { contractAddress, contractABI } from "../lib/constants";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { walletAccount } from "../config/config";
 
 export const TransactionContext = React.createContext();
 
@@ -124,7 +125,7 @@ export const TransactionProvider = ({ children }) => {
 
       const etherAmount = ethers.utils.parseEther(etherPrice, "ether");
 
-      let ownerAddress = "0x0c35f0453c7A88001aA4791a003fAC415680cb62";
+      let ownerAddress = walletAccount;
 
       const transactionHash = await transactionContract.transact(
         addressTo,

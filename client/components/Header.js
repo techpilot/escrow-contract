@@ -55,7 +55,14 @@ const Header = () => {
             Pay
           </div>
 
-          <a
+          <div
+            className={`${style.navItem} ${selectedNav === "swap"}`}
+            onClick={() => setSelectedNav("swap")}
+          >
+            Vote
+          </div>
+
+          {/* <a
             href="https://docs.uniswap.org/#/"
             target="_blank"
             rel="noopener noreferrer"
@@ -63,11 +70,11 @@ const Header = () => {
             <div className={style.navItem}>
               Charts <FiArrowUpRight />
             </div>
-          </a>
+          </a> */}
         </div>
       </div>
       <div className={style.buttonsContainer}>
-        <div className={`${style.button} ${style.buttonPadding}`}>
+        {/* <div className={`${style.button} ${style.buttonPadding}`}>
           <div className={style.buttonIconContainer}>
             <Image src={ethLogo} width={20} height={20} />
           </div>
@@ -75,7 +82,7 @@ const Header = () => {
           <div className={style.buttonIconContainer}>
             <AiOutlineDown />
           </div>
-        </div>
+        </div> */}
 
         {currentAccount ? (
           <div className={`${style.button} ${style.buttonPadding}`}>

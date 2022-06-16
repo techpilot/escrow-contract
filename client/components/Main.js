@@ -11,7 +11,7 @@ import TransactionLoader from "./TransactionLoader";
 Modal.setAppElement("#__next");
 
 const style = {
-  wrapper: `w-screen flex items-center justify-center mt-14`,
+  wrapper: `w-screen flex items-center justify-center mt-14 p-4`,
   content: `bg-[#191B1F] w-[40rem] rounded-2xl p-4`,
   formHeader: `px-2 flex items-center justify-between font-semibold text-xl`,
   transferPropContainer: `bg-[#20242A] my-3 rounded-2xl p-2 text-3xl  border border-[#20242A] hover:border-[#41444F]  flex justify-between`,

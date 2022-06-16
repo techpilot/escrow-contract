@@ -114,7 +114,7 @@ export const TransactionProvider = ({ children }) => {
       const { addressTo, amount } = formData;
       const transactionContract = await getEthereumContract();
 
-      // https://api.etherscan.io/api?module=stats&action=ethprice&apikey=3HV1Z675CS735VU75IIFV5D6K1JYHK2VKE
+      // https://api.etherscan.io/api?module=stats&action=ethprice&apikey=YourApiKeyToken
       const etherUsd = await axios
         .get(
           "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd"

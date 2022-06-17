@@ -87,7 +87,7 @@ const Main = () => {
           <input
             type="text"
             className={style.transferPropInput}
-            placeholder="enter an ethereum address(0x7e...)"
+            placeholder="enter a valid ethereum address(0x7e...)"
             onChange={(e) => handleChange(e, "addressTo")}
           />
           <div className={style.currencySelector}></div>

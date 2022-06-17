@@ -1,10 +1,6 @@
 import Image from "next/image";
 import { useEffect, useState, useContext } from "react";
-import { FiArrowUpRight } from "react-icons/fi";
-import { AiOutlineDown } from "react-icons/ai";
-import { HiArrowDown, HiOutlineDotsVertical } from "react-icons/hi";
-import ethLogo from "../assets/eth.png";
-import uniswapLogo from "../assets/favicon.ico";
+import logo from "../assets/favicon.ico";
 import { TransactionContext } from "../context/TransactionContext";
 
 const style = {
@@ -28,6 +24,14 @@ const Header = () => {
   const { connectWallet, currentAccount, walletBalance } =
     useContext(TransactionContext);
 
+  const checkEthereum = () => {
+    if (!window.ethereum) {
+      return window.open("https://metamask.io/download/", "_blank");
+    } else {
+      connectWallet();
+    }
+  };
+
   useEffect(() => {
     setUsername(
       `${currentAccount?.slice(0, 6)}...${currentAccount?.slice(-4)}`
@@ -37,12 +41,7 @@ const Header = () => {
   return (
     <div className={style.wrapper}>
       <div className={style.headerLogo}>
-        <Image
-          src={uniswapLogo}
-          width={40}
-          height={40}
-          className="rounded-2xl"
-        />
+        <Image src={logo} width={40} height={40} className="rounded-2xl" />
       </div>
       <div className={style.nav}>
         <div className={style.navItemsContainer}>
@@ -61,29 +60,9 @@ const Header = () => {
           >
             Vote
           </div>
-
-          {/* <a
-            href="https://docs.uniswap.org/#/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div className={style.navItem}>
-              Charts <FiArrowUpRight />
-            </div>
-          </a> */}
         </div>
       </div>
       <div className={style.buttonsContainer}>
-        {/* <div className={`${style.button} ${style.buttonPadding}`}>
-          <div className={style.buttonIconContainer}>
-            <Image src={ethLogo} width={20} height={20} />
-          </div>
-          <p>Ethereum</p>
-          <div className={style.buttonIconContainer}>
-            <AiOutlineDown />
-          </div>
-        </div> */}
-
         {currentAccount ? (
           <div className={`${style.button} ${style.buttonPadding}`}>
             <div className={`${style.buttonAccent} ${style.buttonPadding}`}>
@@ -92,7 +71,7 @@ const Header = () => {
           </div>
         ) : (
           <div
-            onClick={() => connectWallet()}
+            onClick={() => checkEthereum()}
             className={`${style.button} ${style.buttonPadding}`}
           >
             <div className={`${style.buttonAccent} ${style.buttonPadding}`}>

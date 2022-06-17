@@ -50,7 +50,6 @@ export const TransactionProvider = ({ children }) => {
   // connect to ethereum wallet functionality
   const connectWallet = async (metamask = eth) => {
     try {
-      if (!window.ethereum) return alert("Please install an ethereum wallet");
       const accounts = await metamask.request({
         method: "eth_requestAccounts",
       });
@@ -67,7 +66,6 @@ export const TransactionProvider = ({ children }) => {
       return ethers.utils.formatEther(balance);
     } catch (error) {
       console.error(error);
-      throw new Error("No ethereum Object.");
     }
   };
 
@@ -101,7 +99,7 @@ export const TransactionProvider = ({ children }) => {
       }
     } catch (error) {
       console.error(error);
-      throw new Error("No ethereum object.");
+      // throw new Error("No ethereum object.");
     }
   };
 
